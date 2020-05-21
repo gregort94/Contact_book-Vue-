@@ -19,6 +19,11 @@
           </label>
         </div>
         <button @click="$emit('close')" type="button" class="btn profile__close"></button>
+        <button
+          @click="$emit('delete-contact', contactData.id)"
+          type="button"
+          class="btn profile__delete"
+        ></button>
         <button type="submit" class="btn profile__save"></button>
         <div ref="saveMessage" class="profile__message">Saved !</div>
       </div>
@@ -93,7 +98,6 @@
 
 
 <script>
-import { log } from "util";
 export default {
   props: ["contactData"],
   data() {

@@ -25,6 +25,15 @@
 			grid-template-columns: 1fr;
 		}
 	}
+	&__logout {
+		position: fixed;
+		top: 15px;
+		right: 15px ;
+		z-index: 100;
+		@media (max-width: $xs) {
+			top: 50px;
+		};
+	}
 	&__letter {
 		width: 50px;
 		height: 50px;
@@ -43,5 +52,4 @@
 			line-height: 25px;
 		}
 	}
-
 }
