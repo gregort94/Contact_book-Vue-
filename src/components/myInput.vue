@@ -1,15 +1,16 @@
 <template>
   <div class="myInput__fieldset">
-    <label class="myInput__label">
-      {{name}}
-      <i :class="activeClass"></i>
-    </label>
+    <label :for="name" class="myInput__label">{{name}}</label>
     <input
+      required
+      :id="name"
+      :class="{'myInput__input--invalid': invalid}"
       :placeholder="placeholder"
       :type="type"
       class="myInput__input"
       v-model="value"
-      @input="firstTouch = false"
+      @invalid="invalid=true"
+      @input="invalid=false"
     />
   </div>
 </template>
@@ -25,54 +26,23 @@ export default {
     type: {
       type: String,
       default: "simple"
-    },
-    index: {
-      type: Number
     }
   },
   data() {
     return {
       value: "",
-      regExpressions: {
-        name: /^[ a-zA-Z ]{2,30}$/,
-        phone: /^[ 0-9 ]{7,14}$/,
-        simple: /^[\w\d]{1,20}$/,
-        email: /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*/,
-        password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-      },
       placeholders: {
-        password: "Min 8 chars, 1 letter and 1 num:",
+        password: "Enter your password",
         email: "Enter your email"
       },
-      classes: {
-        invalidIconClass: "invalid fas fa-exclamation-circle",
-        validIconClass: "valid fas fa-check-circle"
-      },
-      firstTouch: true
+      invalid: false
     };
   },
   computed: {
-    regExp() {
-      return this.regExpressions[this.type];
-    },
     placeholder() {
       return this.placeholders[this.type];
-    },
-    isValid() {
-      return this.regExp.test(this.value);
-    },
-    activeClass() {
-      if (this.firstTouch) {
-        return "";
-      }
-      if (this.isValid) {
-        return this.classes.validIconClass;
-      } else {
-        return this.classes.invalidIconClass;
-      }
     }
   },
-  methods: {},
   watch: {
     isValid() {
       this.$emit("validity-change", {
@@ -80,12 +50,11 @@ export default {
         index: this.index
       });
     }
-  },
-  created() {}
+  }
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .myInput {
   &__fieldset {
     display: flex;
@@ -94,19 +63,20 @@ export default {
   &__label {
     flex: 0 0 30%;
     font-weight: 800;
-    .valid {
-      color: rgb(8, 124, 18);
-    }
-    .invalid {
-      color: rgb(207, 47, 47);
-    }
   }
-
   &__input {
     flex: 1 0 0;
     &::placeholder {
       font-size: 15px;
-      overflow: auto;
+    }
+    &--invalid {
+      border: 2px solid red;
+      border-radius: 3px;
+    }
+    &--invalid:focus {
+      border: 2px solid red;
+      outline: 2px solid red;
+      border-radius: 3px;
     }
   }
 }

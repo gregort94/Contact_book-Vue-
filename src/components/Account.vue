@@ -49,10 +49,11 @@ export default {
   computed: {},
   methods: {
     deleteContact(id) {
-      const index = this.contactsData.find(contact => {
-        return (contact.id = id);
+      const index = this.contactsData.findIndex(contact => {
+        return contact.id == id;
       });
       this.contactsData.splice(index, 1);
+      this.sourceData.splice(index, 1);
       this.currentContact = false;
     }
   },

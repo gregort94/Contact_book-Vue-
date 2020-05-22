@@ -1,7 +1,7 @@
 <template>
   <section class="finder">
     <input v-model="value" type="text" class="finder__input" />
-    <p class="finder__message finder__message--hidden">Nothing find</p>
+    <p v-show="nothingFind" class="finder__message">Nothing find</p>
   </section>
 </template>
 
@@ -13,10 +13,10 @@ export default {
   data() {
     return {
       value: "",
-      dubouceId: ""
+      dubouceId: "",
+      nothingFind: false
     };
   },
-  methods: {},
   watch: {
     value() {
       if (this.dubouceId) {
@@ -28,11 +28,41 @@ export default {
           return user.name.toLowerCase().indexOf(value) + 1;
         });
         this.$emit("filtered", filteredUsers);
-      }, 500);
+        filteredUsers.length === 0
+          ? (this.nothingFind = true)
+          : (this.nothingFind = false);
+      }, 300);
     }
   }
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+.finder {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  border-radius: 2px;
+  width: 500px;
+  &__input {
+    width: 100%;
+  }
+  &__message {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 130%);
+    font-size: 20px;
+    font-size: 20px;
+    &--hidden {
+      display: none;
+    }
+  }
+}
 </style>

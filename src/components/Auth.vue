@@ -1,25 +1,9 @@
 <template>
   <div class="auth" id="auth">
-    <form @submit.prevent="login" class="auth__form" action="#">
-      <my-input
-        @validity-change="validityChange($event.index, $event.isValid)"
-        :index="0"
-        class="auth__input"
-        name="Email"
-        type="email"
-      ></my-input>
-      <my-input
-        @validity-change="validityChange($event.index, $event.isValid)"
-        :index="1"
-        class="auth__input"
-        name="Password"
-        type="password"
-      ></my-input>
+    <form @submit.prevent="$router.push('/account')" class="auth__form" action="#">
+      <my-input class="auth__input" name="Email" type="email"></my-input>
+      <my-input class="auth__input" name="Password" type="password"></my-input>
       <button class="auth__btn" type="submit">Log in</button>
-      <div
-        :class="{'auth__message--visable': message}"
-        class="auth__message"
-      >Complete the fields correctly !</div>
     </form>
   </div>
 </template>
@@ -31,38 +15,13 @@ export default {
     myInput
   },
   data() {
-    return {
-      inputsValidity: [false, false],
-      valid: "",
-      message: false
-    };
+    return {};
   },
-  computed: {},
-  methods: {
-    login() {
-      const sum = this.inputsValidity.reduce(
-        (sum, current) => sum + current,
-        0
-      );
-      if (sum == this.inputsValidity.length) {
-        window.location.hash = "/account";
-      } else {
-        this.message = true;
-        setTimeout(() => {
-          this.message = false;
-        }, 2000);
-      }
-    },
-    validityChange(index, isValid) {
-      this.inputsValidity[index] = isValid;
-    }
-  },
-  watch: {},
-  created() {}
+  methods: {}
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .auth {
   min-height: 100vh;
   padding: 300px 0px 0px 0px;
