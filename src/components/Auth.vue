@@ -1,23 +1,34 @@
 <template>
   <div class="auth" id="auth">
-    <form @submit.prevent="$router.push('/account')" class="auth__form" action="#">
-      <my-input class="auth__input" name="Email" type="email"></my-input>
-      <my-input class="auth__input" name="Password" type="password"></my-input>
+    <form id="authForm" ref="authForm" @submit.prevent="authRequest" class="auth__form" action="#">
+      <div class="auth__fieldset">
+        <label for="name" class="auth__label">Name</label>
+        <input v-model="name" id="name" name="name" class="auth__input" />
+      </div>
+      <div class="auth__fieldset">
+        <label for class="auth__label">Password</label>
+        <input v-model="password" name="password" id="password" class="auth__input" />
+      </div>
       <button class="auth__btn" type="submit">Log in</button>
     </form>
   </div>
 </template>
 
 <script>
-import myInput from "./myInput";
 export default {
-  components: {
-    myInput
-  },
+  components: {},
   data() {
-    return {};
+    return {
+      name: "",
+      password: ""
+    };
   },
-  methods: {}
+  methods: {
+    authRequest() {
+      const formData = { name: this.name, password: this.password };
+      this.$store.dispatch("getData", formData);
+    }
+  }
 };
 </script>
 
@@ -32,8 +43,16 @@ export default {
     padding: 0 0 45px 0;
     margin: 0 auto;
   }
-  &__input {
+  &__fieldset {
+    display: flex;
     margin: 15px;
+  }
+  &__label {
+    flex: 0 0 30%;
+    font-weight: bold;
+  }
+  &__input {
+    flex: 1 0 0;
   }
   &__btn {
     position: absolute;

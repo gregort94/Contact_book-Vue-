@@ -1,9 +1,24 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <auth v-if="!contactsData"></auth>
+    <account v-if="contactsData" :contacts-data="contactsData"></account>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+import Auth from "@/components/Auth.vue";
+import Account from "@/components/Account.vue";
+export default {
+  components: {
+    Auth,
+    Account
+  },
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters(["contactsData"])
+  }
+};
 </script>

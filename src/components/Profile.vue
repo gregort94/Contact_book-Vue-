@@ -5,7 +5,6 @@
         <div class="profile__avatar">
           <img class="fitImg" alt :src="contactData.avatar" />
         </div>
-        <!-- <buttoyn type="button" class="btn profile__edit"></buttoyn> -->
         <div class="profile__star">
           <input
             ref="favorite"

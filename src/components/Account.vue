@@ -1,16 +1,14 @@
 <template>
   <div id="account">
-    <finder @filtered="contactsData = $event" v-if="contactsData" :users="sourceData"></finder>
+    <finder @filtered="filteredData = $event" :sourceData="contactsData"></finder>
     <section class="contacts">
-      <div class="contacts__logout">
-        <router-link to="/">Log out</router-link>
-      </div>
+      <div class="contacts__logout"></div>
       <div class="container">
         <div class="contacts__block">
           <div class="contacts__letter"></div>
           <ul class="contacts__list">
             <contact
-              v-for="(value, key) in contactsData"
+              v-for="(value, key) in filteredData"
               :key="key"
               :contact-data="value"
               @open-profile="currentContact = $event"
@@ -29,39 +27,49 @@
 </template>
 
 <script>
-import { getContactsData } from "../js/backend";
 import Contact from "./Contact";
 import Profile from "./Profile";
 import Finder from "./Finder";
+import { mapGetters } from "vuex";
 export default {
   components: {
     Contact,
     Profile,
     Finder
   },
+  props: {
+    contactsData: Array
+  },
   data() {
     return {
-      sourceData: false,
       currentContact: false,
-      contactsData: false
+      filteredData: false
     };
   },
   computed: {},
   methods: {
     deleteContact(id) {
-      const index = this.contactsData.findIndex(contact => {
+      const filteredDataIndex = this.filteredData.findIndex(contact => {
         return contact.id == id;
       });
-      this.contactsData.splice(index, 1);
-      this.sourceData.splice(index, 1);
+      const contactsDataIndex = this.contactsData.findIndex(contact => {
+        return contact.id == id;
+      });
+      this.contactsData.splice(contactsDataIndex, 1);
+      this.filteredData.splice(filteredDataIndex, 1);
       this.currentContact = false;
     }
   },
   created() {
-    getContactsData().then(resolve => {
-      this.sourceData = resolve;
-      this.contactsData = resolve.slice();
-    });
+    this.filteredData = this.contactsData.slice();
+  },
+  watch: {
+    // contactsData: {
+    //   deep: true,
+    //   handler() {
+    //     this.filteredData = this.contactsData.slice();
+    //   }
+    // }
   }
 };
 </script>
