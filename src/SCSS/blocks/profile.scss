@@ -35,16 +35,19 @@
 		display: flex;
 		flex-direction: column;
 		text-align: center;
-		label {
-			@include bold();
-			text-transform: uppercase;
+	}
+	&__label {
+		@include bold();
+		text-transform: uppercase;
+	}
+	&__input {
+		text-align: center;
+		font-style: italic;
+		&:disabled{
+			background-color: $desabled;
 		}
-		input {
-			text-align: center;
-			font-style: italic;
-			&:disabled{
-				background-color: $desabled;
-			}
+		&::placeholder {
+			color: rgba(255, 2, 2, 0.726)
 		}
 	}
 	&__star {

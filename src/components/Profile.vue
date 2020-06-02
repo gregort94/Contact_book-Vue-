@@ -30,11 +30,12 @@
         <div class="profile__fieldset profile__fieldset--name">
           <input
             required
+            class="profile__input"
             ref="name"
             id="name"
             type="text"
             :value="contactData.name"
-            class="profile__input"
+            @input="checkNameValidity"
           />
         </div>
         <div class="profile__fieldset profile__fieldset--phone">
@@ -119,6 +120,13 @@ export default {
       setTimeout(() => {
         this.$refs.saveMessage.classList.remove("profile__message--visable");
       }, 1000);
+    },
+    checkNameValidity(e) {
+      const isValid = /^[A-Za-z0-9]+$/.test(e.target.value);
+      if (!isValid) {
+        e.target.value = "";
+        e.target.placeholder = "enter in english please";
+      }
     }
   }
 };

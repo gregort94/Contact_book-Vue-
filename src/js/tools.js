@@ -9,6 +9,19 @@ const sortByName = (dataArray) => {
    })
 };
 
+const trimLetters = (letters) => {
+   const trimedLetters = [];
+   let currentLetter = '';
+   letters.forEach((letter) => {
+      letter = letter.toUpperCase();
+      if (letter !== currentLetter) {
+         trimedLetters.push(letter);
+         currentLetter = letter;
+      }
+   })
+   return trimedLetters
+}
+
 /* ============= Export ============= */
 
-export { sortByName }
+export { sortByName, trimLetters }
