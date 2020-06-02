@@ -132,5 +132,135 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "../scss/global/variables.scss";
+@import "../scss/global/mixins.scss";
+.profile {
+  margin: 50px auto;
+  background-color: #fff;
+  position: relative;
+  padding: 15px;
+  width: 500px;
+  background-color: $profileBG;
+  border-radius: 5px;
+  animation-duration: 0.3s;
+  &__top {
+    position: relative;
+    padding: 0px 0px 5px 0px;
+    margin-bottom: 40px;
+  }
+  &__avatar {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    border-radius: 3px;
+    overflow: hidden;
+    @media (max-width: $xs) {
+      width: 180px;
+      height: 180px;
+    }
+  }
+  &__edit {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fff url("~/src/assets/img/icons/edit.svg") center/80% no-repeat;
+  }
+  &__fieldset {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  &__label {
+    @include bold();
+    text-transform: uppercase;
+  }
+  &__input {
+    text-align: center;
+    font-style: italic;
+    &:disabled {
+      background-color: $desabled;
+    }
+    &::placeholder {
+      color: rgba(255, 2, 2, 0.726);
+    }
+  }
+  &__star {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+  }
+  &__star-label img {
+    filter: invert(0.5);
+  }
+  &__close {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    &:before {
+      content: "";
+      display: block;
+      height: 2px;
+      top: 50%;
+      transform: translate(0, -50%) rotate(-45deg);
+      background-color: black;
+    }
+    &:after {
+      content: "";
+      display: block;
+      height: 2px;
+      top: 50%;
+      transform: translate(0, -120%) rotate(45deg);
+      background-color: black;
+    }
+  }
+  &__save {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: #fff url("~/src/assets/img/icons/save.svg") center/80% no-repeat;
+  }
+  &__delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: #fff url("~/src/assets/img/icons/remove.svg") center/80%
+      no-repeat;
+  }
+  &__message {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    background-color: rgba(15, 231, 116, 0.575);
+    padding: 5px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    &--visable {
+      opacity: 1;
+    }
+  }
+  @media (max-width: $sm) {
+    width: 100%;
+    margin: 0;
+    height: 100vh;
+    overflow: auto;
+  }
+}
+.profile__star-input:focus + .profile__star-label img {
+  outline: 5px auto -webkit-focus-ring-color;
+}
+.profile__star-input:checked + .profile__star-label img {
+  filter: invert(0);
+}
 </style>

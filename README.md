@@ -1,15 +1,18 @@
-# contact_book
-
+# Contact_book_vue
 > A Vue.js project
+## Project description
+This SPA is a contact book where the following features are implemented:
+* Get contacts data from server (moсk)
+* First letter grouping and sorting
+* Search engine
+* Edit and remove contacts
 
-## Build Setup
-
-``` bash
-# install dependencies
+## Project setup
+```
 npm install
+```
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+#### Compiles and hot-reloads for development
+```
+npm run start
+```

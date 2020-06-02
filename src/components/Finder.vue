@@ -38,6 +38,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../scss/global/variables.scss";
 .finder {
   position: fixed;
   top: 0;
@@ -63,6 +64,12 @@ export default {
     &--hidden {
       display: none;
     }
+  }
+  @media (max-width: $xs) {
+    left: 0;
+    transform: translate(0, 0);
+    width: 100%;
+    margin: 0px 15px 0px 0px;
   }
 }
 </style>

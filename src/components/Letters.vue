@@ -46,3 +46,55 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+@import "../scss/global/variables.scss";
+@import "../scss/global/mixins.scss";
+.letters {
+  position: fixed;
+  height: 100%;
+  top: 0;
+  right: 0;
+  padding: 15px 0 0 0;
+  @media (max-width: $xs) {
+    padding: 45px 0 0 0;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 30px;
+  }
+  &__item {
+    flex-grow: 1;
+    text-align: center;
+  }
+  &__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: $black;
+    border-radius: 50%;
+    color: $missingLetter;
+    @media (max-width: $sm) {
+      font-size: 15px;
+      line-height: 15px;
+    }
+    &:hover {
+      color: $missingLetter;
+    }
+    &--existing {
+      color: $black;
+      @include bold();
+      font-size: 20px;
+      @media (max-width: $sm) {
+        font-size: 18px;
+        line-height: 18px;
+      }
+      &:hover {
+        color: $existingLetter;
+      }
+    }
+  }
+}
+</style>
