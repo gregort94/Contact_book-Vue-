@@ -1,4 +1,4 @@
-# Contact_book_vue
+# contact_book
 > A Vue.js project
 ## Project description
 This SPA is a contact book where the following features are implemented:
@@ -13,12 +13,20 @@ This SPA is a contact book where the following features are implemented:
 npm install
 ```
 
-#### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development
 ```
 npm run dev
 ```
 
-#### Compiles and minifies for production (Do not use! It is fixing now)
+### Compiles and minifies for production
 ```
-npm run build 
+npm run build
 ```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

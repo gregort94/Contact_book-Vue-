@@ -14,7 +14,7 @@
         <p class="contact__phone">
           <span class="contact__phone-number">{{contactData.phone}}</span>
           <a :href="`tel:${contactData.phone}`" @click.stop class="contact__phone-link">
-            <img class="contact__phone-icon" src="src/assets/img/icons/phone.svg" alt />
+            <img class="contact__phone-icon" src="@/assets/img/icons/phone.svg" alt />
           </a>
         </p>
         <p class="contact__email">{{contactData.email}}</p>

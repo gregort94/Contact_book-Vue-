@@ -14,7 +14,7 @@
             :checked="contactData.favorite"
           />
           <label for="favorite" class="profile__star-label">
-            <img src="src/assets/img/icons/star.svg" alt />
+            <img src="@/assets/img/icons/star.svg" alt />
           </label>
         </div>
         <button @click="$emit('close')" type="button" class="btn profile__close"></button>
@@ -166,7 +166,7 @@ export default {
     position: absolute;
     top: 0;
     right: 0;
-    background: #fff url("~/src/assets/img/icons/edit.svg") center/80% no-repeat;
+    background: #fff url("../assets/img/icons/edit.svg") center/80% no-repeat;
   }
   &__fieldset {
     display: flex;
@@ -226,7 +226,7 @@ export default {
     right: 0;
     width: 50px;
     height: 50px;
-    background: #fff url("~/src/assets/img/icons/save.svg") center/80% no-repeat;
+    background: #fff url("../assets/img/icons/save.svg") center/80% no-repeat;
   }
   &__delete {
     position: absolute;
@@ -234,8 +234,7 @@ export default {
     right: 0;
     width: 50px;
     height: 50px;
-    background: #fff url("~/src/assets/img/icons/remove.svg") center/80%
-      no-repeat;
+    background: #fff url("../assets/img/icons/remove.svg") center/80% no-repeat;
   }
   &__message {
     position: absolute;
