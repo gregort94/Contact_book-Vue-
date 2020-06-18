@@ -8,8 +8,7 @@
           <div class="contacts__letter" :id="letter">{{letter}}</div>
           <ul class="contacts__list">
             <contact
-              v-for="(value, key) in filteredData"
-              v-if="value.name[0].toUpperCase() === letter"
+              v-for="(value, key) in filterContactsByLetter(letter)"
               :key="key"
               :contact-data="value"
               @open-profile="currentContact = $event"
@@ -18,12 +17,14 @@
         </div>
       </div>
     </section>
-    <profile
-      @delete-contact="deleteContact($event)"
-      @close="currentContact = false"
-      v-if="currentContact"
-      :contact-data="currentContact"
-    ></profile>
+    <transition name="soft">
+      <profile
+        v-if="currentContact"
+        @delete-contact="deleteContact($event)"
+        @close="currentContact = false"
+        :contact-data="currentContact"
+      ></profile>
+    </transition>
     <letters :existingLetters="existingLetters"></letters>
   </div>
 </template>
@@ -34,7 +35,6 @@ import Contact from "./Contact";
 import Profile from "./Profile";
 import Finder from "./Finder";
 import Letters from "./Letters";
-import { mapGetters } from "vuex";
 export default {
   components: {
     Contact,
@@ -68,6 +68,11 @@ export default {
       this.contactsData.splice(contactsDataIndex, 1);
       this.filteredData.splice(filteredDataIndex, 1);
       this.currentContact = false;
+    },
+    filterContactsByLetter(letter) {
+      return this.filteredData.filter(
+        contact => contact.name[0].toUpperCase() === letter
+      );
     }
   },
   created() {

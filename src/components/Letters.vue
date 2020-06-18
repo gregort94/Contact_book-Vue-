@@ -14,7 +14,6 @@
 
 <script>
 import { arr_EN } from "../js/data";
-import { log } from "util";
 export default {
   props: {
     existingLetters: Array
